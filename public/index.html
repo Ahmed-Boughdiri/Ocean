@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/rooms.css">
+    <link rel="stylesheet" href="css/chatbox.css">
+    <script defer src="https://kit.fontawesome.com/83639dd029.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="container navbar-container">
+            <div class="navbar-logo">
+                <img 
+                    src="assets/logo.svg" 
+                    alt="ocean-logo"
+                >
+                <h1 class="navbar-brand">Ocean</h1>
+            </div>
+            <div class="navbar-options">
+                <div class="navbar-option">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="navbar-option">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="navbar-option">
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- -->
+    <!-- Rooms Section -->
+    <section id="rooms">
+        <div class="available-rooms">
+            <div class="room first">
+                <div class="room-thumbnail">
+                    <img 
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
+                        alt=""
+                    >
+                </div>
+                <div class="room-details">
+                    <h4 class="room-name">
+                        The Linux Talk
+                    </h4>
+                    <p class="room-last-message">
+                        Hello There
+                    </p>
+                </div>
+            </div>
+
+            <div class="room selected">
+                <div class="room-thumbnail">
+                    <img 
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
+                        alt=""
+                    >
+                </div>
+                <div class="room-details">
+                    <h4 class="room-name">
+                        The Linux Talk
+                    </h4>
+                    <p class="room-last-message">
+                        Hello There
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="rooms-seach-bar">
+            <input 
+                type="text"
+                placeholder="Search For Rooms To Join"
+            >
+            <i class="fas fa-search"></i>
+        </div>
+    </section>
+    <!-- -->
+    <!-- ChatBox -->
+    <section id="chatbox">
+        <div class="chatbox-messages">
+            <div class="chatbox-message-container first">
+                <div class="chatbox-message-arrow"></div>
+                <div class="chatbox-message">
+                    <h3 class="chatbox-message-owner">
+                        Sander Kleiguein
+                    </h3>
+                    <p class="chatbox-message-content">
+                        Hello There, What's Up
+                    </p>
+                </div>
+            </div>
+            <div class="chatbox-message-container">
+                <div class="chatbox-message-arrow"></div>
+                <div class="chatbox-message">
+                    <h3 class="chatbox-message-owner">
+                        Sander Kleiguein
+                    </h3>
+                    <p class="chatbox-message-content">
+                        Hello There, What's Up
+                    </p>
+                </div>
+            </div>
+            <div class="chatbox-message-container sent-by-user">
+                <div class="chatbox-message sent-by-user">
+                    <h3 class="chatbox-message-owner">
+                        Sander Kleiguein
+                    </h3>
+                    <p class="chatbox-message-content">
+                        Hello There, What's Up
+                    </p>
+                </div>
+                <div class="chatbox-message-arrow sent-by-user"></div>
+            </div>
+            <div class="chatbox-message-container sent-by-user">
+                <div class="chatbox-message sent-by-user">
+                    <h3 class="chatbox-message-owner">
+                        Sander Kleiguein
+                    </h3>
+                    <p class="chatbox-message-content">
+                        Hello There, What's Up
+                    </p>
+                </div>
+                <div class="chatbox-message-arrow sent-by-user"></div>
+            </div>
+        </div>
+        <div class="chatbox-input">
+            <input 
+                type="text"
+                placeholder="Type Your Message ..."
+            >
+            <i class="fas fa-paper-plane"></i>
+        </div>
+    </section>
+    <!-- -->
+</body>
+</html>
