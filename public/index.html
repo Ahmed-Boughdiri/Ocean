@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="css/rooms.css">
     <link rel="stylesheet" href="css/chatbox.css">
     <script defer src="https://kit.fontawesome.com/83639dd029.js" crossorigin="anonymous"></script>
+    <script defer src="http://localhost:5000/socket.io/socket.io.js"></script>
+    <script defer type="module" src="js/index.js"></script>
+
 </head>
 <body>
     <!-- Navbar -->
@@ -85,50 +88,7 @@
     <!-- ChatBox -->
     <section id="chatbox">
         <div class="chatbox-messages">
-            <div class="chatbox-message-container first">
-                <div class="chatbox-message-arrow"></div>
-                <div class="chatbox-message">
-                    <h3 class="chatbox-message-owner">
-                        Sander Kleiguein
-                    </h3>
-                    <p class="chatbox-message-content">
-                        Hello There, What's Up
-                    </p>
-                </div>
-            </div>
-            <div class="chatbox-message-container">
-                <div class="chatbox-message-arrow"></div>
-                <div class="chatbox-message">
-                    <h3 class="chatbox-message-owner">
-                        Sander Kleiguein
-                    </h3>
-                    <p class="chatbox-message-content">
-                        Hello There, What's Up
-                    </p>
-                </div>
-            </div>
-            <div class="chatbox-message-container sent-by-user">
-                <div class="chatbox-message sent-by-user">
-                    <h3 class="chatbox-message-owner">
-                        Sander Kleiguein
-                    </h3>
-                    <p class="chatbox-message-content">
-                        Hello There, What's Up
-                    </p>
-                </div>
-                <div class="chatbox-message-arrow sent-by-user"></div>
-            </div>
-            <div class="chatbox-message-container sent-by-user">
-                <div class="chatbox-message sent-by-user">
-                    <h3 class="chatbox-message-owner">
-                        Sander Kleiguein
-                    </h3>
-                    <p class="chatbox-message-content">
-                        Hello There, What's Up
-                    </p>
-                </div>
-                <div class="chatbox-message-arrow sent-by-user"></div>
-            </div>
+            <!-- Room's Messages -->
         </div>
         <div class="chatbox-input">
             <input 
