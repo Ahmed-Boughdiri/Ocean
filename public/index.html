@@ -6,12 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ocean</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/rooms.css">
-    <link rel="stylesheet" href="css/chatbox.css">
+    <link rel="stylesheet" href="css/desktop/navbar.css">
+    <link rel="stylesheet" href="css/desktop/rooms.css">
+    <link rel="stylesheet" href="css/desktop/chatbox.css">
+    <link rel="stylesheet" href="css/tablet/navbar.css">
+    <link rel="stylesheet" href="css/tablet/rooms.css">
+    <link rel="stylesheet" href="css/tablet/chatbox.css">
+    <link rel="stylesheet" href="css/mobile/rooms.css">
+    <link rel="stylesheet" href="css/mobile/chatbox.css">
     <script defer src="https://kit.fontawesome.com/83639dd029.js" crossorigin="anonymous"></script>
     <script defer src="http://localhost:5000/socket.io/socket.io.js"></script>
     <script defer type="module" src="js/index.js"></script>
+    <script defer src="js/responsive.js"></script>
 
 </head>
 <body>
@@ -36,8 +42,29 @@
                     <i class="fas fa-ellipsis-v"></i>
                 </div>
             </div>
+            <div class="navbar-menu-button">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </nav>
+    <div class="navbar-menu">
+        <div class="navbar-menu-item">
+            <i class="fas fa-users"></i>
+            <h4>Lists of users</h4>
+        </div>
+        <div class="navbar-menu-item">
+            <i class="fas fa-plus"></i>
+            <h4>Create a chat room</h4>
+        </div>
+        <div class="navbar-menu-item">
+            <i class="fas fa-sign-out-alt"></i>
+            <h4>Logout</h4>
+        </div>
+        <div class="navbar-menu-item">
+            <i class="fas fa-comments"></i>
+            <h4>Show Available Rooms</h4>
+        </div>
+    </div>
     <!-- -->
     <!-- Rooms Section -->
     <section id="rooms">

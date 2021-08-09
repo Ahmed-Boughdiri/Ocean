@@ -1,0 +1,15 @@
+
+@media only screen and (max-width: 900px) {
+    #rooms {
+        width: 30%;
+    }
+    .room-name {
+        font-size: 13px;
+    }
+    .room-last-message {
+        font-size: 12px;
+    }
+    .rooms-seach-bar>input {
+        font-size: 13px;
+    }
+}

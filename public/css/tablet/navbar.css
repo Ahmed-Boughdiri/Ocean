@@ -1,0 +1,46 @@
+
+@media only screen and (max-width: 900px) {
+    .navbar-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .navbar-options {
+        display: none;
+    }   
+    .navbar-menu-button {
+        height: 35px;
+        width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: #fff;
+        cursor: pointer;
+    }
+    .navbar-menu {
+        display: none;
+        width: 100vw;
+        min-height: 100px;
+        background-color: #00008B;
+        position: fixed;
+        top: 55px;
+        left: 0;
+        z-index: 3;
+        text-align: center;
+        padding-top: 20px;
+    }
+    .navbar-menu-item {
+        width: 100%;
+        max-width: 190px;
+        display: flex;
+        align-items: center;
+        margin: 0 auto 12px;
+        cursor: pointer;
+        color: #fff;
+    }
+    .navbar-menu-item>h4 {
+        text-align: left;
+        margin-left: 15px;
+        font-size: 15px;
+    }
+}

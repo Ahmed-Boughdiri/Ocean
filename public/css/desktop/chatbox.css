@@ -1,17 +1,18 @@
 /* ChatBox */
 
 #chatbox {
-    width: 70.6%;
-    max-width: calc(100vw - 400px);
-    height: calc(100vh - 55px);
+    width: calc(100vw - 401px);
+    height: calc(100vh - 60px);
     position: fixed;
     top: 55px;
     right: 0;
     overflow: hidden;
 }
 .chatbox-messages {
-    height: calc(100% - 60px);
+    height: calc(100% - 45px);
     width: 100%;
+    box-sizing: border-box;
+    padding-top: 10px;
 }
 .chatbox-message-container {
     max-width: 200px;
@@ -19,13 +20,14 @@
     align-items: flex-start;
     margin-left: 10px;
 }
-.chatbox-message-container.first {
+/* .chatbox-message-container.first {
     margin-top: 10px;
     margin-left: 10px;
-}
+} */
 .chatbox-message-container.sent-by-user {
     margin-left: auto;
-    margin-right: 10px;
+    justify-content: flex-end;
+    padding-right: 20px;
 }
 .chatbox-message {
     max-width: 200px;
@@ -93,14 +95,19 @@
     color: #919191;
    opacity:  1;
 }
-.rooms-seach-bar>input:-ms-input-placeholder { 
+.chatbox-input>input:-ms-input-placeholder { 
     color: #919191;
 }
-.rooms-seach-bar>input::-ms-input-placeholder { 
+.chatbox-input>input::-ms-input-placeholder { 
     color: #919191;
 }
 
-.rooms-seach-bar>input::placeholder { 
+.chatbox-input>input::placeholder { 
     color: #919191;
+}
+.chatbox-input>i {
+    cursor: pointer;
+    min-height: 18px;
+    min-width: 18px;
 }
 

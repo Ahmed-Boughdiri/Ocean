@@ -2,8 +2,7 @@
 
 #rooms {
     height: calc(100vh - 55px);
-    width: 30%;
-    max-width: 400px;
+    width: 400px;
     position: fixed;
     top: 55px;
     left: 0;

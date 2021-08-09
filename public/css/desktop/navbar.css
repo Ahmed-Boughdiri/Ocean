@@ -49,3 +49,10 @@ nav {
     font-size: 19px;
     cursor: pointer;
 }
+
+.navbar-menu-button {
+    display: none;
+}
+.navbar-menu {
+    display: none;
+}

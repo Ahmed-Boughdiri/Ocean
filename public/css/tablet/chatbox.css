@@ -1,0 +1,15 @@
+
+@media only screen and (max-width: 900px) {
+    #chatbox {
+        width: calc(70% - 1px);
+    }
+    .chatbox-message-owner {
+        font-size: 14px;
+    }
+    .chatbox-message-content {
+        font-size: 13px;
+    }
+    .chatbox-input>input {
+        font-size: 13px;
+    }
+}
