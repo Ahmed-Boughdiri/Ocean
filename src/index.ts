@@ -2,6 +2,13 @@ import express, { json } from "express";
 import path from "path";
 import { Server } from "socket.io";
 import http from "http";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import {
+    handleUserAuth
+} from "./routes";
+
+dotenv.config();
 
 // SETTING UP THE EXPRESS SERVER
 const app = express();
@@ -14,9 +21,27 @@ app.get("/", (req, res) =>{
     return res.render("index");
 });
 
+app.get("/signup/", (req, res) =>{
+    return res.sendFile(path.join((__dirname), "../public/signup.html"));
+});
+
+app.get("/login", (req, res) =>{
+    return res.sendFile(path.join(__dirname, "../public/login.html"));
+})
+
 server.listen(
     process.env.PORT || PORT, 
     () => console.log(`SERVER RUNNING ON PORT ${PORT}...`)
+);
+
+// CONNECTING TO THE DATABASE
+mongoose.connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.dxsrh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    },
+    () => console.log("DB CONNECTED ...")
 );
 
 // SETTING UP THE SOCKET SERVER
@@ -31,3 +56,6 @@ io.on("connection", socket => {
         socket.to(data.room).emit("sent-message", data.message);
     });
 });
+
+// ROUTES
+app.use("/user/", handleUserAuth);
