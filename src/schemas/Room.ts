@@ -14,7 +14,8 @@ const RoomSchema = new mongoose.Schema<RoomProps>({
             type: mongoose.SchemaTypes.ObjectId
         },
         content: String
-    }]
+    }],
+    thumbnail: String
 });
 
 export default mongoose.model("Room", RoomSchema);

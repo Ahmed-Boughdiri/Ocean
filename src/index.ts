@@ -5,7 +5,8 @@ import http from "http";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import {
-    handleUserAuth
+    handleUserAuth,
+    rooms
 } from "./routes";
 
 dotenv.config();
@@ -14,11 +15,12 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const PORT = 5000;
-app.use(json());
+app.use(json({ limit: "50mb" }));
 app.use(express.static(path.join(__dirname, '../public')));
+app.use("/uploads", express.static(path.join(__dirname, '../uploads')));
 
 app.get("/", (req, res) =>{
-    return res.render("index");
+    return res.sendFile(path.join((__dirname), "../public/index.html"));
 });
 
 app.get("/signup/", (req, res) =>{
@@ -59,3 +61,4 @@ io.on("connection", socket => {
 
 // ROUTES
 app.use("/user/", handleUserAuth);
+app.use("/rooms/", rooms);
