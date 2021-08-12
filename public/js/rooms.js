@@ -1,4 +1,8 @@
 
+const roomsData = [];
+let roomUsers = [];
+const roomsIDs = [];
+
 function getUserID() {
     try {
         const result = localStorage.getItem("OCEAN_USER_DATA");
@@ -37,9 +41,9 @@ function renderRoom({
     lastMessage="",
     isFirst=false
 }) {
-    console.log(`http://localhost:5000/${thumbnail}`);
+    const id = uuid.v4();
     const result = `
-        <div class="room ${isFirst && "first"}">
+        <div class="room ${isFirst ?"first" : ""}" id="${id}">
             <div class="room-thumbnail">
                 <img 
                     src="http://localhost:5000/${thumbnail}" 
@@ -57,6 +61,9 @@ function renderRoom({
         </div>
     `;
     rooms.innerHTML += result;
+    return {
+        id
+    }
 }
 
 // Get Rooms
@@ -83,17 +90,56 @@ function renderRoom({
             return;
         res.rooms.forEach((room, index) => {
             // Rendering Rooms
-            renderRoom({
+            const { id } = renderRoom({
                 isFirst: (index === 0),
                 name: room.name,
                 lastMessage: room.messages[0],
                 thumbnail: room.thumbnail
             });
+            const roomInfo = {
+                users: room.users,
+                messages: room.messages,
+                id
+            }
+            roomsData.push(roomInfo);
+            roomsIDs.push(id);
         });
     } catch(err) {
         return;
     }
 })();
+
+function getRoomID(e) {
+    if(!e.target)
+        return {
+            id: null
+        }
+    if(roomsIDs.includes(e.target.id)) {
+        return {
+            id: e.target.id
+        }
+    } else if(e.target.parentElement.attributes.class.nodeValue === "room-details") {
+        return {
+            id: e.target.parentElement.parentElement.id
+        }
+    } else if(e.target.nodeName === "IMG") {
+        return {
+            id: e.target.parentElement.parentElement.id
+        }
+    } else {
+        return {
+            id: null
+        }
+    }
+}
+
+rooms.addEventListener("click", e =>{
+    const { id } = getRoomID(e);
+    const roomIndex = roomsData.findIndex(roomData => roomData.id === id);
+    if(roomIndex === -1)
+        return;
+    roomUsers = [...roomsData[roomIndex].users];
+});
 
 // Creating New Room
 
@@ -146,7 +192,6 @@ createNewRoomForm.addEventListener("submit", async e =>{
             }
         );
         const res = await req.json();
-        console.log("Result: ", res);
         renderRoom({
             name: res.name,
             lastMessage: res.messages[0],
@@ -160,4 +205,49 @@ createNewRoomForm.addEventListener("submit", async e =>{
         // TODO: HANDLING ERRORS
         console.log(JSON.stringify(err));
     }
+});
+
+// Room Users
+
+const navbarRoomUsers = document.querySelectorAll(".navbar-option")[0];
+const roomUsersComponent = document.querySelector(".room-users");
+const roomUsersList = document.querySelector(".room-users-list");
+const roomUsersCancel = document.querySelector(".room-users-header>i");
+
+function renderRoomUser({
+    thumbnail="",
+    email="",
+    name=""
+}) {
+    const result = `
+        <div class="room-user">
+            <div class="room-user-thumbnail">
+                <img 
+                    src="${thumbnail}" 
+                    alt=""
+                >
+            </div>
+            <div class="room-user-details">
+                <h4>${name}</h4>
+                <p>${email}</p>
+            </div>
+        </div>
+    `;
+    roomUsersList.innerHTML += result;
+}
+
+
+roomUsersCancel.addEventListener("click", e =>{
+    roomUsersComponent.style.display = "none";
+});
+
+navbarRoomUsers.addEventListener("click", e =>{
+    roomUsersComponent.style.display = "flex";
+    roomUsers.forEach(roomUser =>{
+        renderRoomUser({
+            email: roomUser.email,
+            thumbnail: roomUser.thumbnail,
+            name: roomUser.name
+        });
+    });
 });

@@ -3,12 +3,12 @@ const rooms = [
     {
         roomID: "1",
         messages: [],
-        dom: document.querySelectorAll(".room")[0]
+        dom: document.createElement("div")
     },
     {
         roomID: "2",
         messages: [],
-        dom: document.querySelectorAll(".room")[1]
+        dom: document.createElement("div")
     },
 ];
 let joined_room;

@@ -16,8 +16,10 @@
     <link rel="stylesheet" href="css/mobile/chatbox.css">
     <link rel="stylesheet" href="css/spinner.css">
     <link rel="stylesheet" href="css/addNewRoom.css">
+    <link rel="stylesheet" href="css/roomUsers.css">
     <script defer src="https://kit.fontawesome.com/83639dd029.js" crossorigin="anonymous"></script>
     <script defer src="http://localhost:5000/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js" integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script defer src="js/auth.js"></script>
     <script defer type="module" src="js/index.js"></script>
     <script defer src="js/responsive.js"></script>
@@ -165,6 +167,55 @@
         </div>
         <div class="add-new-room-cancel">
             <i class="fas fa-times"></i>
+        </div>
+    </div>
+    <!-- -->
+    <!-- Room Users -->
+    <div class="room-users">
+        <div class="room-users-container">
+            <div class="room-users-header">
+                <h3>Linux Talk:</h3>
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="room-users-list">
+                <!-- Room Users -->
+            </div>
+            <!-- <div class="room-user">
+                <div class="room-user-thumbnail">
+                    <img 
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
+                        alt=""
+                    >
+                </div>
+                <div class="room-user-details">
+                    <h4>Linux Talk</h4>
+                    <p>test@gmail.com</p>
+                </div>
+            </div>
+            <div class="room-user">
+                <div class="room-user-thumbnail">
+                    <img 
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
+                        alt=""
+                    >
+                </div>
+                <div class="room-user-details">
+                    <h4>Linux Talk</h4>
+                    <p>test@gmail.com</p>
+                </div>
+            </div>
+            <div class="room-user">
+                <div class="room-user-thumbnail">
+                    <img 
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
+                        alt=""
+                    >
+                </div>
+                <div class="room-user-details">
+                    <h4>Linux Talk</h4>
+                    <p>test@gmail.com</p>
+                </div>
+            </div> -->
         </div>
     </div>
     <!-- -->

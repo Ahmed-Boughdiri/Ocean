@@ -1,0 +1,70 @@
+
+.room-users {
+    height: 100vh;
+    width: 100vw;
+    /* display: flex; */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+}
+.room-users-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+.room-users-header {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.room-users-header>h3 {
+    text-align: left;
+    color: #000;
+    font-size: 22px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.room-users-header>i {
+    font-size: 17px;
+    color: #919191;
+    margin-top: 8px;
+    cursor: pointer;
+}
+.room-user {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.room-user-thumbnail {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #919191;
+}
+.room-user-thumbnail>img {
+    width: 100%;
+}
+.room-user-details {
+    margin-left: 20px;
+}
+.room-user-details>h4 {
+    text-align: left;
+    color: #000;
+    font-size: 17px;
+    margin-bottom: 3px;
+}
+.room-user-details>p {
+    text-align: left;
+    color: #000;
+    font-size: 15px;
+}
