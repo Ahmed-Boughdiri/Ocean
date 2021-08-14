@@ -6,8 +6,10 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import {
     handleUserAuth,
-    rooms
+    rooms,
+    users
 } from "./routes";
+import { Room, User } from "./schemas";
 
 dotenv.config();
 
@@ -54,11 +56,44 @@ io.on("connection", socket => {
         console.log(`User Have Joined Room ${roomID}`);
         socket.join(roomID);
     });
-    socket.on("chat-message", data =>{
-        socket.to(data.room).emit("sent-message", data.message);
+    socket.on("chat-message", async data =>{
+        try {
+            const sender = await User.findById(data.senderID);
+            let senderName = "";
+            if(!sender)
+                senderName = "Unknown";
+            else 
+                senderName = sender.name;
+            const room = await Room.findById(data.room);
+            if(!room)
+                throw Error("Invalid Room ID");
+            await Room.updateOne(
+                {
+                    _id: data.room
+                },
+                {
+                    $addToSet: {
+                        messages: {
+                            sender: data.senderID,
+                            content: data.message
+                        }
+                    }
+                }
+            );
+            socket.to(data.room).emit(
+                "sent-message", 
+                {
+                    msg: data.message,
+                    sender: senderName
+                }
+            );
+        } catch(err) {
+            throw err;
+        }
     });
 });
 
 // ROUTES
 app.use("/user/", handleUserAuth);
 app.use("/rooms/", rooms);
+app.use("/users/", users);

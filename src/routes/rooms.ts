@@ -1,8 +1,8 @@
 import express from "express";
 import { Room, User } from "../schemas";
-import jwt from "jsonwebtoken";
 import multer from "multer";
 import { v4 as uuidv4 } from "uuid";
+import { verifyToken } from "../utils";
 
 
 const storage = multer.diskStorage({
@@ -14,33 +14,9 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage }).single("thumbnail")
+const upload = multer({ storage }).single("thumbnail");
 
 const route = express.Router();
-
-async function verifyToken(token: String) {
-    try {
-        if(!token)
-            return {
-                error: "Token Needs To Be Provided"
-            }
-        const validToken = await jwt.verify(
-            token as string, 
-            process.env.JWT_SECRET || ""
-        );
-        if(!validToken)
-            return {
-                error: "Invalid Token"
-            }
-        return {
-            error: false
-        }
-    } catch(err) {
-        return {
-            error: "An Error Has Occured Please Try Again Later"
-        }
-    }
-}
 
 route.post("/get", async (req, res) =>{
     try {
@@ -61,10 +37,12 @@ route.post("/get", async (req, res) =>{
             users: room.users.map((user: any) =>({
                 name: user.name,
                 email: user.email,
-                id: user._id
+                id: user._id,
+                thumbnail: user.thumbnail
             })),
             messages: room.messages,
-            thumbnail: room.thumbnail
+            thumbnail: room.thumbnail,
+            id: room._id
         }));
         return res.status(200).send({
             rooms: result
@@ -130,6 +108,47 @@ route.post(
         return res.status(500).send({
             error: "An Error Has Occured Please Try Again"
         });
+    }
+});
+
+route.post("/messages/get", async (req, res) =>{
+    try {
+        const { token, roomID } = req.body;
+        const { error } = await verifyToken(token);
+        if(error)
+            return res.status(400).send({
+                error: "Invalid Token"
+            });
+        if(!roomID)
+            return res.status(400).send({
+                error: "Room ID Needs To Be Provided"
+            });
+        const room = await Room.findById(roomID).populate("users");
+        if(!room)
+            return res.status(400).send({
+                error: "Invalid Room ID"
+            });
+        const result:any[] = await Promise.all(room.messages.map(async (message:any) =>{
+            const sender = await User.findById(message.sender);
+            if(!sender)
+                return {}
+            return {
+                content: message.content,
+                sender: {
+                    name: sender.name,
+                    email: sender.email,
+                    id: sender._id
+                }
+            }
+        }));
+        console.log(result);
+        return res.status(200).send({
+            messages: result
+        })
+    } catch(err) {
+        return res.status(500).send({
+            error: "An Error Has Occured Please Try Again"
+        })
     }
 });
 

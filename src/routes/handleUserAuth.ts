@@ -47,7 +47,8 @@ route.post("/create", async(req, res) =>{
         const user = new User({
             name: username,
             email,
-            password: encryptedPassword
+            password: encryptedPassword,
+            thumbnail: "uploads/unknown.png"
         });
         await user.save();
         // Generating New Token

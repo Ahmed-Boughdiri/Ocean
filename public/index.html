@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/spinner.css">
     <link rel="stylesheet" href="css/addNewRoom.css">
     <link rel="stylesheet" href="css/roomUsers.css">
+    <link rel="stylesheet" href="css/moreOptions.css">
+    <link rel="stylesheet" href="css/uploadUserThumbnail.css">
     <script defer src="https://kit.fontawesome.com/83639dd029.js" crossorigin="anonymous"></script>
     <script defer src="http://localhost:5000/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js" integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -24,6 +26,9 @@
     <script defer type="module" src="js/index.js"></script>
     <script defer src="js/responsive.js"></script>
     <script defer src="js/rooms.js"></script>
+    <script defer src="js/moreOptions.js"></script>
+    <script defer src="js/logout.js"></script>
+    <script defer src="js/uploadUserThumbnail.js"></script>
 
 </head>
 <body>
@@ -75,39 +80,16 @@
     <!-- Rooms Section -->
     <section id="rooms">
         <div class="available-rooms">
-            <!-- <div class="room first">
-                <div class="room-thumbnail">
-                    <img 
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
-                        alt=""
-                    >
-                </div>
-                <div class="room-details">
-                    <h4 class="room-name">
-                        The Linux Talk
-                    </h4>
-                    <p class="room-last-message">
-                        Hello There
-                    </p>
-                </div>
+            <!-- Available Rooms -->
+            <div class="no-available-rooms">
+                <i class="fas fa-comment-slash"></i>
+                <h4>
+                    There's No Available Rooms
+                </h4>
             </div>
-
-            <div class="room selected">
-                <div class="room-thumbnail">
-                    <img 
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
-                        alt=""
-                    >
-                </div>
-                <div class="room-details">
-                    <h4 class="room-name">
-                        The Linux Talk
-                    </h4>
-                    <p class="room-last-message">
-                        Hello There
-                    </p>
-                </div>
-            </div> -->
+            <div class="rooms-loader">
+                <div class="loader">Loading...</div>
+            </div>
         </div>
         <div class="rooms-seach-bar">
             <input 
@@ -121,6 +103,21 @@
     <!-- ChatBox -->
     <section id="chatbox">
         <div class="chatbox-messages">
+            <div class="chatbox-messages-loader">
+                <div class="loader">Loading...</div>
+            </div>
+            <div class="chatbox-empty">
+                <i class="fas fa-inbox"></i>
+                <h4>
+                    No Messages Sent Yet
+                </h4>
+            </div>
+            <div class="no-room-selected-yet">
+                <i class="fas fa-comments"></i>
+                <h4>
+                    No Room Selected Yet
+                </h4>
+            </div>
             <!-- Room's Messages -->
         </div>
         <div class="chatbox-input">
@@ -180,42 +177,51 @@
             <div class="room-users-list">
                 <!-- Room Users -->
             </div>
-            <!-- <div class="room-user">
-                <div class="room-user-thumbnail">
-                    <img 
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
-                        alt=""
-                    >
+        </div>
+    </div>
+    <!-- -->
+    <!-- More Options -->
+    <div class="more-options">
+        <div class="more-options-container">
+            <div class="more-options-header">
+                <h4>More Options:</h4>
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="more-options-wrapper">
+                <div class="more-option">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <h6>Logout</h6>
                 </div>
-                <div class="room-user-details">
-                    <h4>Linux Talk</h4>
-                    <p>test@gmail.com</p>
+                <div class="more-option">
+                    <i class="fas fa-file-upload"></i>
+                    <h6>Upload User Thumbnail</h6>
                 </div>
             </div>
-            <div class="room-user">
-                <div class="room-user-thumbnail">
-                    <img 
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
-                        alt=""
-                    >
-                </div>
-                <div class="room-user-details">
-                    <h4>Linux Talk</h4>
-                    <p>test@gmail.com</p>
-                </div>
+        </div>
+    </div>
+    <!-- -->
+    <!-- Upload User Thumbnail -->
+    <div class="upload-user-thumbnail">
+        <div class="upload-user-thumbnail-container">
+            <div class="upload-user-thumbnail-header">
+                <h4>Upload User Thumbnail: </h4>
+                <i class="fas fa-times"></i>
             </div>
-            <div class="room-user">
-                <div class="room-user-thumbnail">
-                    <img 
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" 
-                        alt=""
+            <form 
+                class="upload-user-thumbnail-form"
+                enctype='multipart/form-data'
+            >
+                <div class="upload-user-thumbnail-wrapper">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <input 
+                        type="file"
                     >
+                    <button>
+                        Upload User Thumbnail
+                    </button>
                 </div>
-                <div class="room-user-details">
-                    <h4>Linux Talk</h4>
-                    <p>test@gmail.com</p>
-                </div>
-            </div> -->
+                <button class="upload-user-thumbnail-btn">Submit</button>
+            </form>
         </div>
     </div>
     <!-- -->

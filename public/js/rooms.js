@@ -1,7 +1,9 @@
+const socket = io("http://localhost:5000/");
 
 const roomsData = [];
 let roomUsers = [];
 const roomsIDs = [];
+let roomID = "";
 
 function getUserID() {
     try {
@@ -39,9 +41,9 @@ function renderRoom({
     thumbnail="",
     name="",
     lastMessage="",
-    isFirst=false
+    isFirst=false,
+    id=""
 }) {
-    const id = uuid.v4();
     const result = `
         <div class="room ${isFirst ?"first" : ""}" id="${id}">
             <div class="room-thumbnail">
@@ -61,17 +63,22 @@ function renderRoom({
         </div>
     `;
     rooms.innerHTML += result;
-    return {
-        id
-    }
 }
 
 // Get Rooms
+
+const noRooms = document.querySelector(".no-available-rooms");
+const roomsLoader = document.querySelector(".rooms-loader");
+const hideRoomsLoader = () => roomsLoader.style.display = "none";
+
 (async function() {
     try {
+        roomsLoader.style.display = "flex";
         const { error: getTokenError, token } = getToken();
-        if(getTokenError)
+        if(getTokenError) {
+            hideRoomsLoader();
             return;
+        }
         const req = await fetch(
             "http://localhost:5000/rooms/get",
             {
@@ -86,23 +93,32 @@ function renderRoom({
             }
         );
         const res = await req.json();
-        if(req.status === 400 || req.status === 500)
+        if(req.status === 400 || req.status === 500) {
+            hideRoomsLoader();
             return;
+        }
+        if(!res.rooms.length) {
+            hideRoomsLoader();
+            noRooms.style.display = "flex";
+            return;
+        }
+        roomsLoader.style.display = "none";
         res.rooms.forEach((room, index) => {
             // Rendering Rooms
-            const { id } = renderRoom({
+            renderRoom({
                 isFirst: (index === 0),
                 name: room.name,
                 lastMessage: room.messages[0],
-                thumbnail: room.thumbnail
+                thumbnail: room.thumbnail,
+                id: room.id
             });
             const roomInfo = {
                 users: room.users,
                 messages: room.messages,
-                id
+                id: room.id
             }
             roomsData.push(roomInfo);
-            roomsIDs.push(id);
+            roomsIDs.push(room.id);
         });
     } catch(err) {
         return;
@@ -133,12 +149,90 @@ function getRoomID(e) {
     }
 }
 
-rooms.addEventListener("click", e =>{
+let roomMessgaes = [];
+const messagesLoader = document.querySelector(".chatbox-messages-loader");
+const emptyRoom = document.querySelector(".chatbox-empty");
+const hideMessagesLoader = () => messagesLoader.style.display = "none";
+const showEmtyRoom = () => emptyRoom.style.display = "flex";
+
+const noRoomsSelectedYet = document.querySelector(".no-room-selected-yet");
+let roomSelected = false;
+
+function removeOldRoomMessages() {
+    roomMessgaes = [];
+    const messagesComponent = document.querySelectorAll(".chatbox-message-container");
+    messagesComponent.forEach(msgComponent =>{
+        chatboxMessages.removeChild(msgComponent);
+    });
+}
+
+async function handleGetRoomMessages(roomID="") {
+    try {
+        removeOldRoomMessages();
+        messagesLoader.style.display = "flex";
+        const { error: getTokenError, token } = getToken();
+        if(getTokenError) {
+            hideMessagesLoader();
+            throw getTokenError;
+        }
+        if(!roomID) {
+            hideMessagesLoader();
+            throw Error("Room ID Needs To Be Provided");
+        }
+        const req = await fetch(
+            "http://localhost:5000/rooms/messages/get/",
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    token: token,
+                    roomID
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            }
+        );
+        const res = await req.json();
+        if(req.status === 400 || req.status === 500) {
+            hideMessagesLoader();
+            throw res.error;
+        }
+        if(!res.messages.length) {
+            hideMessagesLoader();
+            showEmtyRoom();
+            return;
+        } else {
+            roomMessgaes = [...res.messages];
+            roomMessgaes.forEach((message, index) =>{
+                renderMessage({
+                    isFirst: index === 0,
+                    message: message.content,
+                    sender: message.sender.name
+                })
+            });
+            chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+            hideMessagesLoader();
+        }
+    } catch(err) {
+        throw err;
+    }
+}
+
+rooms.addEventListener("click", async e =>{
     const { id } = getRoomID(e);
+    console.log(id);
     const roomIndex = roomsData.findIndex(roomData => roomData.id === id);
     if(roomIndex === -1)
         return;
     roomUsers = [...roomsData[roomIndex].users];
+    roomID = id;
+    socket.emit("join-room", id);
+    if(!roomSelected) {
+        noRoomsSelectedYet.style.display = "none";
+        roomSelected = true;
+    }
+    await handleGetRoomMessages(id);
 });
 
 // Creating New Room
@@ -192,15 +286,20 @@ createNewRoomForm.addEventListener("submit", async e =>{
             }
         );
         const res = await req.json();
+        noRooms.style.display = "none";
+        roomsLoader.style.display = "none";
         renderRoom({
             name: res.name,
             lastMessage: res.messages[0],
-            thumbnail: res.thumbnail
+            thumbnail: res.thumbnail,
+            id: res.id
         });
+        roomsIDs.push(res.id);
         if(req.status === 400 || req.status === 500)
             // TODO: HANDLING ERROS
             return;
         createNewRoomModal.style.display = "none";
+        window.location.href = "http://http://localhost:5000/";
     } catch(err) {
         // TODO: HANDLING ERRORS
         console.log(JSON.stringify(err));
@@ -223,7 +322,7 @@ function renderRoomUser({
         <div class="room-user">
             <div class="room-user-thumbnail">
                 <img 
-                    src="${thumbnail}" 
+                    src="http://localhost:5000/${thumbnail}" 
                     alt=""
                 >
             </div>
@@ -251,3 +350,77 @@ navbarRoomUsers.addEventListener("click", e =>{
         });
     });
 });
+
+// Send Messages
+
+const chatboxInput = document.querySelector(".chatbox-input>input");
+const chatboxSendButton = document.querySelector(".chatbox-input>i"); 
+const chatboxMessages = document.querySelector(".chatbox-messages");
+
+function renderMessage({
+    sender,
+    message,
+    isFirst=false
+}) {
+    const component = `
+        <div class="chatbox-message-container ${(sender === "user") && "sent-by-user"} ${isFirst && "first"}">
+            ${
+                (sender !== "user") ?
+                `<div class="chatbox-message-arrow ${(sender === "user") && "sent-by-user"}"></div>` : 
+                ""
+            }
+            <div class="chatbox-message ${(sender === "user") && "sent-by-user"}">
+                <h3 class="chatbox-message-owner">
+                    ${(sender === "user") ? "You" : sender}
+                </h3>
+                <p class="chatbox-message-content">
+                    ${message}
+                </p>
+            </div>
+            ${
+                (sender === "user") ?
+                `<div class="chatbox-message-arrow ${(sender === "user") && "sent-by-user"}"></div>` : 
+                ""
+            }
+        </div>
+    `;
+    chatboxMessages.innerHTML += component;
+}
+
+console.log(chatboxMessages.scrollTop);
+console.log(chatboxMessages.scrollHeight);
+
+socket.on("sent-message", messageData =>{
+    roomMessgaes.push(messageData.msg);
+    renderMessage({
+        message: messageData.msg,
+        sender: messageData.sender,
+        isFirst: roomMessgaes ? true : false
+    });
+    chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+});
+
+
+chatboxSendButton.addEventListener("click", e =>{
+    const message = chatboxInput.value;
+    const { error: getUserIDError, userID } = getUserID();
+    if(getUserIDError)
+        window.location.href = "http://localhost:5000/login/";
+    socket.emit(
+        "chat-message", 
+        { 
+            room: roomID, 
+            message,
+            senderID: userID,
+        }
+    );
+    roomMessgaes.push(message);
+    renderMessage({
+        message,
+        sender: "user",
+        isFirst: roomMessgaes ? true : false
+    });
+    chatboxInput.value = "";
+    chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
+});
+
