@@ -299,7 +299,7 @@ createNewRoomForm.addEventListener("submit", async e =>{
             // TODO: HANDLING ERROS
             return;
         createNewRoomModal.style.display = "none";
-        window.location.href = "http://http://localhost:5000/";
+        window.location.href = "http://localhost:5000/";
     } catch(err) {
         // TODO: HANDLING ERRORS
         console.log(JSON.stringify(err));
