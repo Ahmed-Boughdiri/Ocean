@@ -141,7 +141,6 @@ route.post("/messages/get", async (req, res) =>{
                 }
             }
         }));
-        console.log(result);
         return res.status(200).send({
             messages: result
         })

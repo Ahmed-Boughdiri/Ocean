@@ -21,10 +21,6 @@
     align-items: flex-start;
     margin-left: 10px;
 }
-/* .chatbox-message-container.first {
-    margin-top: 10px;
-    margin-left: 10px;
-} */
 .chatbox-message-container.sent-by-user {
     margin-left: auto;
     justify-content: flex-end;
@@ -118,7 +114,6 @@
     position: relative;
     top: 0;
     left: 0;
-    /* display: flex; */
     display: none;
     align-items: center;
     justify-content: center;
@@ -130,7 +125,6 @@
     position: relative;
     top: 0;
     left: 0;
-    /* display: flex; */
     display: none;
     align-items: center;
     justify-content: center;

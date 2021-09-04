@@ -15,21 +15,6 @@ const uploadUserThumbnailInputBtn = document.querySelector(".upload-user-thumbna
 const uploadUserThumbnailInput = document.querySelector(".upload-user-thumbnail-wrapper>input");
 const uploadUserThumbnailFrom = document.querySelector(".upload-user-thumbnail-form");
 
-function getUserID() {
-    try {
-        const result = localStorage.getItem("OCEAN_USER_DATA");
-        const userData = JSON.parse(result);
-        return {
-            error: false,
-            userID: userData.id
-        }
-    } catch(err) {
-        return {
-            error: "An Error Occured While Trying To Get User ID"
-        }
-    }
-}
-
 uploadUserThumbnailInputBtn.addEventListener("click", e =>{
     e.preventDefault();
     uploadUserThumbnailInput.click();

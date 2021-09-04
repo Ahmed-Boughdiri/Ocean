@@ -53,7 +53,6 @@ const io = new Server(server);
 
 io.on("connection", socket => {
     socket.on("join-room", roomID =>{
-        console.log(`User Have Joined Room ${roomID}`);
         socket.join(roomID);
     });
     socket.on("chat-message", async data =>{

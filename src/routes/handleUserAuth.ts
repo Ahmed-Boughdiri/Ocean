@@ -33,7 +33,6 @@ route.post("/create", async(req, res) =>{
             email,
             password
         } = req.body;
-        console.log(req.body);
         // Vlidating Data
         const { error } = await validateUserData({
             username,

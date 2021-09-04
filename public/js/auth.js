@@ -1,41 +1,9 @@
 
 const spinner = document.querySelector(".spinner");
 
-function getToken() {
-    try {
-        return localStorage.getItem("OCEAN_AUTH_TOKEN");
-    } catch(err) {
-        return "";
-    }
-}
-
-function saveUserData({
-    username="",
-    email="",
-    id=""
-}) {
-    try {
-        localStorage.setItem(
-            "OCEAN_USER_DATA", 
-            JSON.stringify({
-                username,
-                email,
-                id
-            })
-        );
-        return {
-            error: false
-        }
-    } catch(err) {
-        return {
-            error: "An Error Has Occured Please Try Again"
-        }
-    }
-}
-
 (async function() {
     try {
-        const token = getToken();
+        const { token } = getToken();
         if(!token)
             return window.location.href = "http://localhost:5000/login"
         else {

@@ -15,7 +15,6 @@ This app is built using express.js and MongoDB, also relies heavily of course on
 - [Creating An Account](#account)
 - [Logging Into An Existing Account](#login)
 - [Uploading A User Thumbnail](#user-thumbnail)
-- [Deleting My Account](#delete-account)
 - [Creating A New Room](#create-new-room)
 - [Participating In A Room](#room)
 - [Previewing The Available Users On That Particular Room](#room-users)
@@ -35,14 +34,17 @@ The login process is really easy and straight forward, just like the sign up pro
 ### <a id="user-thumbnail"></a> Uploading A User Thumbnail:
 If you want to upload a sexy user thumbnail for your account, the process is also easy, you will have to click on the three dots icon on the navbar (on the platform) and then choose the "Upload User Thumbnail" option, after that you need to choose your image, and after completing you hit upload.
 
-### <a id="delete-account"></a> Deleting My Account:
-In case you want to delete your account, all you have to do is to click on the three dots icon that appears on the navbar, and then choose the "Delete Account" option, it will show you a confirmation modal, if you sure about your decision, you need to click on confirm, and your account will be completely deleted.
+[![user-thumbnail.gif](https://s9.gifyu.com/images/user-thumbnail.gif)](https://gifyu.com/image/GedX)
 
 ### <a id="create-new-room"></a> Creating A New Room
 If you want to create your own room, and gather your freinds to discuss about your passions, all you have to do is to click on the plus icon on the navbar, and the enter tha name of the room that you will going to create, and also upload a thumbnail for that room, and that you click on "Create New Room" and congratulation, you have created your very first room on the platform.
 
+[![creating-new-room.gif](https://s9.gifyu.com/images/creating-new-room.gif)](https://gifyu.com/image/Gelt)
+
 ### <a id="room"></a> Participating In A Room:
 In order to participate in a room all you have to do is to simply click on the room item, on the left hand side of the screen, and that's it you can now write down your message and send it in the room.
+
+[![participating-in-a-room.gif](https://s9.gifyu.com/images/participating-in-a-room.gif)](https://gifyu.com/image/Gen2)
 
 ### <a id="room-users"></a> Previewing The Available Users On That Particular Room:
 If you want to take a look at the users that are present on a particular room, you have first to select the room and then click on the users icon on the navbar, and that's all you have to do.
