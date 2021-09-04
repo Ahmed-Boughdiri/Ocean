@@ -20,14 +20,14 @@ This app is built using express.js and MongoDB, also relies heavily of course on
 - [Previewing The Available Users On That Particular Room](#room-users)
 
 ### <a id="account"></a> Creating An Account:
-To create an account, first you need to go to the [Sign Up Page](http://localhost:5000/signup) and fill the form with the needed data, then click on "Create An Account" and congratulations, you now have an account on the platform.
+To create an account, first you need to go to the [Sign Up Page](https://ocean-com.herokuapp.com/signup) and fill the form with the needed data, then click on "Create An Account" and congratulations, you now have an account on the platform.
 
 
 [![sign-up8a693e4bf5c6b0bc.gif](https://s9.gifyu.com/images/sign-up8a693e4bf5c6b0bc.gif)](https://gifyu.com/image/GJgx)
 
 
 ### <a id="login"></a> Logging Into An Existing Account:
-The login process is really easy and straight forward, just like the sign up process, all you have to do is to go to the [Login Page](http://localhost:5000/login) and then enter your email and password, if the login process went successfully, you should be redirected to the chat platform.
+The login process is really easy and straight forward, just like the sign up process, all you have to do is to go to the [Login Page](https://ocean-com.herokuapp.com/login) and then enter your email and password, if the login process went successfully, you should be redirected to the chat platform.
 
 [![log-in.gif](https://s9.gifyu.com/images/log-in.gif)](https://gifyu.com/image/GJg0)
 

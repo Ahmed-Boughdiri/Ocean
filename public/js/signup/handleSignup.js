@@ -6,7 +6,7 @@ const handleSignup = async function handleSignUp({
 }) {
     try {
         const req = await fetch(
-            "http://localhost:5000/user/create",
+            "https://ocean-com.herokuapp.com/user/create",
             {
                 method: "POST",
                 headers: {

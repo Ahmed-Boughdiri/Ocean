@@ -30,7 +30,7 @@ uploadUserThumbnailFrom.addEventListener("submit", async e =>{
             return;
         form.append("userID", userID);
         const req = await fetch(
-            "http://localhost:5000/users/upload/thumbnail/",
+            "https://ocean-com.herokuapp.com/users/upload/thumbnail/",
             {
                 method: "POST",
                 body: form
@@ -38,7 +38,7 @@ uploadUserThumbnailFrom.addEventListener("submit", async e =>{
         );
         if(req.status === 400 || req.status === 500)
             return;
-        window.location.href = "http://localhost:5000/"
+        window.location.href = "https://ocean-com.herokuapp.com/"
     } catch(err) {
         console.log(JSON.stringify(err));
     }

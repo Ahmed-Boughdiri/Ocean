@@ -46,7 +46,7 @@ signupButton.addEventListener("click", async e =>{
                 if(saveTokenError) 
                     showSignupError(saveTokenError);
                 else 
-                    window.location.href = "http://localhost:5000/";
+                    window.location.href = "https://ocean-com.herokuapp.com/";
             }
         }
     }

@@ -1,4 +1,4 @@
-const socket = io("http://localhost:5000/");
+const socket = io("https://ocean-com.herokuapp.com/");
 
 const roomsData = [];
 let roomUsers = [];
@@ -22,7 +22,7 @@ const roomsLoader = document.querySelector(".rooms-loader");
             return;
         }
         const req = await fetch(
-            "http://localhost:5000/rooms/get",
+            "https://ocean-com.herokuapp.com/rooms/get",
             {
                 method: "POST",
                 body: JSON.stringify({
@@ -130,7 +130,7 @@ createNewRoomForm.addEventListener("submit", async e =>{
     form.append("token", token);
     try {
         const req = await fetch(
-            "http://localhost:5000/rooms/create",
+            "https://ocean-com.herokuapp.com/rooms/create",
             {
                 method: "POST",
                 body: form,
@@ -151,7 +151,7 @@ createNewRoomForm.addEventListener("submit", async e =>{
             // TODO: HANDLING ERROS
             return;
         createNewRoomModal.style.display = "none";
-        window.location.href = "http://localhost:5000/";
+        window.location.href = "https://ocean-com.herokuapp.com/";
     } catch(err) {
         // TODO: HANDLING ERRORS
         console.log(JSON.stringify(err));
@@ -201,7 +201,7 @@ chatboxSendButton.addEventListener("click", e =>{
     const message = chatboxInput.value;
     const { error: getUserIDError, userID } = getUserID();
     if(getUserIDError)
-        window.location.href = "http://localhost:5000/login/";
+        window.location.href = "https://ocean-com.herokuapp.com/login/";
     socket.emit(
         "chat-message", 
         { 

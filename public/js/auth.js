@@ -5,10 +5,10 @@ const spinner = document.querySelector(".spinner");
     try {
         const { token } = getToken();
         if(!token)
-            return window.location.href = "http://localhost:5000/login"
+            return window.location.href = "https://ocean-com.herokuapp.com/login"
         else {
             const req = await fetch(
-                "http://localhost:5000/user/token",
+                "https://ocean-com.herokuapp.com/user/token",
                 {
                     method: "POST",
                     body: JSON.stringify({
@@ -22,7 +22,7 @@ const spinner = document.querySelector(".spinner");
             );
             const res = await req.json();
             if(req.status === 400 || req.status === 500)
-                return window.location.href = "http://localhost:5000/login"
+                return window.location.href = "https://ocean-com.herokuapp.com/login"
             else {
                 const { error: saveUserDataError } = saveUserData({
                     email: res.email,
@@ -30,13 +30,13 @@ const spinner = document.querySelector(".spinner");
                     id: res.id
                 });
                 if(saveUserDataError)
-                    return window.location.href = "http://localhost:5000/login"
+                    return window.location.href = "https://ocean-com.herokuapp.com/login"
                 else  {
                     spinner.style.display = "none";
                 }
             }
         }
     } catch(err) {
-        window.location.href = "http://localhost:5000/login"
+        window.location.href = "https://ocean-com.herokuapp.com/login"
     }
 })();
