@@ -1,8 +1,4 @@
-import express, { 
-    json, 
-    Request, 
-    Response 
-} from "express";
+import express, { json } from "express";
 import path from "path";
 import { Server } from "socket.io";
 import http from "http";
@@ -25,15 +21,15 @@ app.use(json({ limit: "50mb" }));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use("/uploads", express.static(path.join(__dirname, '../uploads')));
 
-app.get("/", (req:Request, res:Response) =>{
+app.get("/", (req, res) =>{
     return res.sendFile(path.join((__dirname), "../public/index.html"));
 });
 
-app.get("/signup/", (req:Request, res:Response) =>{
+app.get("/signup/", (req, res) =>{
     return res.sendFile(path.join((__dirname), "../public/signup.html"));
 });
 
-app.get("/login", (req:Request, res:Response) =>{
+app.get("/login", (req, res) =>{
     return res.sendFile(path.join(__dirname, "../public/login.html"));
 })
 
