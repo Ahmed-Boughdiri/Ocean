@@ -40,7 +40,7 @@ uploadUserThumbnailFrom.addEventListener("submit", async e =>{
             return;
         window.location.href = "https://ocean-com.herokuapp.com/"
     } catch(err) {
-        console.log(JSON.stringify(err));
+        return;
     }
 });
 

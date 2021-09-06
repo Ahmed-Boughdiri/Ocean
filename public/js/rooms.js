@@ -154,7 +154,7 @@ createNewRoomForm.addEventListener("submit", async e =>{
         window.location.href = "https://ocean-com.herokuapp.com/";
     } catch(err) {
         // TODO: HANDLING ERRORS
-        console.log(JSON.stringify(err));
+        return;
     }
 });
 
