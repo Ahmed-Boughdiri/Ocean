@@ -2,5 +2,5 @@
     "watch": ["src"],
     "ext": "ts,json",
     "ignore": ["src/**/*.spec.ts"],
-    "exec": "C:/Users/ahmed/Desktop/Folders/Ocean-Chat/Ocean/node_modules/.bin/ts-node.cmd ./src/index.ts"
+    "exec": "ts-node ./src/index.ts"
 }
