@@ -65,7 +65,7 @@ route.post("/create", async(req, res) =>{
     } catch(err) {
         console.log("Error: ", err)
         return res.status(500).send({ 
-            err: JSON.stringify(err)
+            err: "Updated Error"
         });
     }
 });
