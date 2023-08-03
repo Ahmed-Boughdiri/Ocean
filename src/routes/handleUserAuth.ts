@@ -64,7 +64,7 @@ route.post("/create", async(req, res) =>{
         })
     } catch(err) {
         return res.status(500).send({ 
-            err: "An Error Has Occured Please Try Again"
+            err: JSON.stringify(err)
         });
     }
 });
