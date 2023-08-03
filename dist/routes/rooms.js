@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -54,10 +54,10 @@ var storage = multer_1.default.diskStorage({
         });
     },
     filename: function (req, file, cb) {
-        cb(null, uuid_1.v4() + "." + file.mimetype.split('/')[1]);
+        cb(null, "".concat((0, uuid_1.v4)(), ".").concat(file.mimetype.split('/')[1]));
     }
 });
-var upload = multer_1.default({ storage: storage }).single("thumbnail");
+var upload = (0, multer_1.default)({ storage: storage }).single("thumbnail");
 var route = express_1.default.Router();
 route.post("/get", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var token, error, rooms, result, err_1;
@@ -66,7 +66,7 @@ route.post("/get", function (req, res) { return __awaiter(void 0, void 0, void 0
             case 0:
                 _a.trys.push([0, 3, , 4]);
                 token = req.body.token;
-                return [4 /*yield*/, utils_1.verifyToken(token)];
+                return [4 /*yield*/, (0, utils_1.verifyToken)(token)];
             case 1:
                 error = (_a.sent()).error;
                 if (error)
@@ -120,7 +120,7 @@ route.post("/create", upload, function (req, res) { return __awaiter(void 0, voi
                     return [2 /*return*/, res.status(400).send({
                             error: "User ID Needs To Be Provided"
                         })];
-                return [4 /*yield*/, utils_1.verifyToken(token)];
+                return [4 /*yield*/, (0, utils_1.verifyToken)(token)];
             case 1:
                 error = (_d.sent()).error;
                 if (error)
@@ -174,7 +174,7 @@ route.post("/messages/get", function (req, res) { return __awaiter(void 0, void 
             case 0:
                 _b.trys.push([0, 4, , 5]);
                 _a = req.body, token = _a.token, roomID = _a.roomID;
-                return [4 /*yield*/, utils_1.verifyToken(token)];
+                return [4 /*yield*/, (0, utils_1.verifyToken)(token)];
             case 1:
                 error = (_b.sent()).error;
                 if (error)

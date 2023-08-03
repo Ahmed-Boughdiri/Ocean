@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -33,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -68,10 +72,10 @@ var routes_1 = require("./routes");
 var schemas_1 = require("./schemas");
 dotenv_1.default.config();
 // SETTING UP THE EXPRESS SERVER
-var app = express_1.default();
+var app = (0, express_1.default)();
 var server = http_1.default.createServer(app);
 var PORT = 5000;
-app.use(express_1.json({ limit: "50mb" }));
+app.use((0, express_1.json)({ limit: "50mb" }));
 app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
 app.use("/uploads", express_1.default.static(path_1.default.join(__dirname, '../uploads')));
 app.get("/", function (req, res) {
@@ -83,9 +87,9 @@ app.get("/signup/", function (req, res) {
 app.get("/login", function (req, res) {
     return res.sendFile(path_1.default.join(__dirname, "../public/login.html"));
 });
-server.listen(process.env.PORT || PORT, function () { return console.log("SERVER RUNNING ON PORT " + PORT + "..."); });
+server.listen(process.env.PORT || PORT, function () { return console.log("SERVER RUNNING ON PORT ".concat(PORT, "...")); });
 // CONNECTING TO THE DATABASE
-mongoose_1.default.connect("mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@cluster0.dxsrh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose_1.default.connect("mongodb+srv://".concat(process.env.DB_USER, ":").concat(process.env.DB_PASSWORD, "@cluster0.rimnobs.mongodb.net/?retryWrites=true&w=majority"), {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, function () { return console.log("DB CONNECTED ..."); });

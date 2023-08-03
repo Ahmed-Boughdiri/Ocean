@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -70,7 +70,7 @@ route.post("/create", function (req, res) { return __awaiter(void 0, void 0, voi
             case 0:
                 _b.trys.push([0, 5, , 6]);
                 _a = req.body, username = _a.username, email = _a.email, password = _a.password;
-                return [4 /*yield*/, utils_1.validateUserData({
+                return [4 /*yield*/, (0, utils_1.validateUserData)({
                         username: username,
                         email: email,
                         password: password
@@ -79,7 +79,7 @@ route.post("/create", function (req, res) { return __awaiter(void 0, void 0, voi
                 error = (_b.sent()).error;
                 if (error)
                     return [2 /*return*/, res.status(400).send({ err: error })];
-                return [4 /*yield*/, utils_1.encryptPassword(password)];
+                return [4 /*yield*/, (0, utils_1.encryptPassword)(password)];
             case 2:
                 encryptedPassword = _b.sent();
                 user = new schemas_1.User({
@@ -106,8 +106,9 @@ route.post("/create", function (req, res) { return __awaiter(void 0, void 0, voi
                     })];
             case 5:
                 err_1 = _b.sent();
+                console.log("Error: ", err_1);
                 return [2 /*return*/, res.status(500).send({
-                        err: "An Error Has Occured Please Try Again"
+                        err: "Updated Error"
                     })];
             case 6: return [2 /*return*/];
         }
@@ -121,7 +122,7 @@ route.post("/login", function (req, res) { return __awaiter(void 0, void 0, void
             case 0:
                 _b.trys.push([0, 4, , 5]);
                 _a = req.body, email = _a.email, password = _a.password;
-                error = utils_1.validateUserLoginData({
+                error = (0, utils_1.validateUserLoginData)({
                     email: email,
                     password: password
                 }).error;
