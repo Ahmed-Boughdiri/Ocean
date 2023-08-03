@@ -63,6 +63,7 @@ route.post("/create", async(req, res) =>{
             token
         })
     } catch(err) {
+        console.log("Error: ", err)
         return res.status(500).send({ 
             err: JSON.stringify(err)
         });
