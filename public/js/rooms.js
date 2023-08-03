@@ -1,4 +1,4 @@
-const socket = io("https://ocean-com.herokuapp.com/");
+const socket = io("https://ocean-chat.onrender.com/");
 
 const roomsData = [];
 let roomUsers = [];
@@ -22,7 +22,7 @@ const roomsLoader = document.querySelector(".rooms-loader");
             return;
         }
         const req = await fetch(
-            "https://ocean-com.herokuapp.com/rooms/get",
+            "https://ocean-chat.onrender.com/rooms/get",
             {
                 method: "POST",
                 body: JSON.stringify({
@@ -130,7 +130,7 @@ createNewRoomForm.addEventListener("submit", async e =>{
     form.append("token", token);
     try {
         const req = await fetch(
-            "https://ocean-com.herokuapp.com/rooms/create",
+            "https://ocean-chat.onrender.com/rooms/create",
             {
                 method: "POST",
                 body: form,
@@ -151,7 +151,7 @@ createNewRoomForm.addEventListener("submit", async e =>{
             // TODO: HANDLING ERROS
             return;
         createNewRoomModal.style.display = "none";
-        window.location.href = "https://ocean-com.herokuapp.com/";
+        window.location.href = "https://ocean-chat.onrender.com/";
     } catch(err) {
         // TODO: HANDLING ERRORS
         return;
@@ -201,7 +201,7 @@ chatboxSendButton.addEventListener("click", e =>{
     const message = chatboxInput.value;
     const { error: getUserIDError, userID } = getUserID();
     if(getUserIDError)
-        window.location.href = "https://ocean-com.herokuapp.com/login/";
+        window.location.href = "https://ocean-chat.onrender.com/login/";
     socket.emit(
         "chat-message", 
         { 

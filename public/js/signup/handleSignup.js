@@ -1,12 +1,13 @@
 
-const handleSignup = async function handleSignUp({
+async function handleSignUp({
     username="",
     email="",
     password="",
 }) {
+    console.log("Sign up Started!!!")
     try {
         const req = await fetch(
-            "https://ocean-com.herokuapp.com/user/create",
+            "https://ocean-chat.onrender.com/user/create",
             {
                 method: "POST",
                 headers: {

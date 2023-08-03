@@ -30,7 +30,7 @@ uploadUserThumbnailFrom.addEventListener("submit", async e =>{
             return;
         form.append("userID", userID);
         const req = await fetch(
-            "https://ocean-com.herokuapp.com/users/upload/thumbnail/",
+            "https://ocean-chat.onrender.com/users/upload/thumbnail/",
             {
                 method: "POST",
                 body: form
@@ -38,7 +38,7 @@ uploadUserThumbnailFrom.addEventListener("submit", async e =>{
         );
         if(req.status === 400 || req.status === 500)
             return;
-        window.location.href = "https://ocean-com.herokuapp.com/"
+        window.location.href = "https://ocean-chat.onrender.com/"
     } catch(err) {
         return;
     }

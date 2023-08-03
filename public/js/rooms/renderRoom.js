@@ -12,7 +12,7 @@ const renderRoom = function({
                 class="room-thumbnail"
             >
             <img 
-                src="https://ocean-com.herokuapp.com/${thumbnail}" 
+                src="https://ocean-chat.onrender.com/${thumbnail}" 
                 alt="ocean-room-thumbnail"
             >
             </div>

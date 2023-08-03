@@ -5,7 +5,7 @@ const handleLogin = async function handleLogin({
 }) {
     try {
         const req = await fetch(
-            "https://ocean-com.herokuapp.com/user/login",
+            "https://ocean-chat.onrender.com/user/login",
             {
                 method: "POST",
                 body: JSON.stringify({

@@ -40,7 +40,7 @@ loginButton.addEventListener("click", async e =>{
                 if(saveTokenError)
                     showLoginError(saveTokenError);
                 else 
-                    window.location.href = "https://ocean-com.herokuapp.com/"
+                    window.location.href = "https://ocean-chat.onrender.com/"
             }
         }
     }

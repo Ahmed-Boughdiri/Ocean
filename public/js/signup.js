@@ -1,4 +1,6 @@
 
+console.log("Signup Loaded Successfully!!!");
+
 const username = document.querySelector("#username-input");
 const email = document.querySelector("#email-input");
 const password = document.querySelector("#password-input");
@@ -46,7 +48,7 @@ signupButton.addEventListener("click", async e =>{
                 if(saveTokenError) 
                     showSignupError(saveTokenError);
                 else 
-                    window.location.href = "https://ocean-com.herokuapp.com/";
+                    window.location.href = "https://ocean-chat.onrender.com/";
             }
         }
     }

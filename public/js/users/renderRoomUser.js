@@ -8,7 +8,7 @@ const renderRoomUser = function({
         <div class="room-user">
             <div class="room-user-thumbnail">
                 <img 
-                    src="https://ocean-com.herokuapp.com/${thumbnail}" 
+                    src="https://ocean-chat.onrender.com/${thumbnail}" 
                     alt=""
                 >
             </div>

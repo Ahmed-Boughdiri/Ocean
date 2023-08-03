@@ -13,7 +13,7 @@ const handleGetRoomMessages = async function(roomID="") {
             throw Error("Room ID Needs To Be Provided");
         }
         const req = await fetch(
-            "https://ocean-com.herokuapp.com/rooms/messages/get/",
+            "https://ocean-chat.onrender.com/rooms/messages/get/",
             {
                 method: "POST",
                 body: JSON.stringify({
