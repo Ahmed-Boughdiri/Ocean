@@ -28,6 +28,7 @@ async function generateToken(data: DataProps): Promise<String> {
 // CREATING AN ACCOUNT
 route.post("/create", async(req, res) =>{
     try {
+        return res.status(500).send("FUCK YOU!!!!")
         const {
             username,
             email,
